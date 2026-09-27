@@ -3,7 +3,7 @@
 .monkeycode-tmp-files/
 .github/
 site/
-music/
+/music/
 upload_server.py
 deploy.py
 manifest.json
@@ -15,3 +15,5 @@ DNSPod-分线路解析模板.md
 国内优选IP/
 CloudflareSpeedTest_linux_amd64.tar.gz
 cloudflarespeedtest.tar.gz
+*.tar.gz
+*.zip
