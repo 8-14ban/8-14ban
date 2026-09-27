@@ -11,7 +11,7 @@
     />
     <link rel="apple-touch-icon" href="/photos/logo.png" />
     <meta property="og:title" content="临沂郑旺中学 八年级14班 · 班级文化" />
-    <meta property="og:description" content="五十个人的三年，记录我们一起走过的日子" />
+    <meta property="og:description" content="四十八个人的三年，记录我们一起走过的日子" />
     <meta property="og:image" content="/photos/classroom-group.jpg" />
     <meta property="og:type" content="website" />
     <title>临沂郑旺中学 八年级14班 · 班级文化</title>
@@ -57,5 +57,35 @@
     }
     </script>
     <div id="app"></div>
+    <script>
+    if(!window.__NS){
+      var SG=[{n:'心似烟火',s:'心似烟火.mp3'},{n:'星茶会',s:'星茶会.mp3'},{n:'风摇盛夏',s:'风摇盛夏.mp3'},{n:'3:30PM',s:'3_30PM.mp3'}];
+      var ci=0,au=new Audio();au.preload='metadata';
+      var css='#mp{position:fixed;right:16px;bottom:16px;z-index:99998;display:flex;align-items:center;gap:10px;background:rgba(247,244,237,.96);border:1px solid rgba(178,58,46,.25);border-radius:30px;padding:6px 10px 6px 16px;box-shadow:0 6px 24px rgba(0,0,0,.14);font-family:Georgia,serif;user-select:none}';
+      css+='#mp .nm{font-size:13px;color:#B23A2E;cursor:pointer;max-width:96px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}';
+      css+='#mp .pg{width:64px;height:3px;background:rgba(178,58,46,.18);border-radius:2px;overflow:hidden}';
+      css+='#mp .pb{height:100%;width:0;background:#B23A2E;transition:width .1s}';
+      css+='#mp .bt{width:30px;height:30px;border-radius:50%;background:#B23A2E;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;flex-shrink:0;transition:.15s}';
+      css+='#mp .bt:hover{background:#9c4535}';
+      css+='#mp .bt:active{transform:scale(.92)}';
+      var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+      var mp=document.createElement('div');mp.id='mp';
+      mp.innerHTML='<span class="nm"></span><div class="pg"><div class="pb"></div></div><span class="bt bt-play">&#9654;</span><span class="bt bt-next">&#9194;</span>';
+      document.body.appendChild(mp);
+      var nmEl=mp.querySelector('.nm'),pbEl=mp.querySelector('.pb'),playEl=mp.querySelector('.bt-play'),nextEl=mp.querySelector('.bt-next');
+      function load(){au.src='/music/'+encodeURIComponent(SG[ci].s);nmEl.textContent=SG[ci].n;}
+      function play(){au.play();}
+      function toggle(){if(au.paused)play();else au.pause();}
+      function next(){var wp=!au.paused;ci=(ci+1)%SG.length;load();if(wp)play();}
+      playEl.addEventListener('click',function(e){e.stopPropagation();toggle();});
+      nextEl.addEventListener('click',function(e){e.stopPropagation();next();});
+      nmEl.addEventListener('click',function(){next();});
+      au.addEventListener('timeupdate',function(){if(au.duration)pbEl.style.width=(au.currentTime/au.duration*100)+'%';});
+      au.addEventListener('ended',function(){next();});
+      au.addEventListener('play',function(){playEl.innerHTML='&#10074;&#10074;';});
+      au.addEventListener('pause',function(){playEl.innerHTML='&#9654;';});
+      load();
+    }
+    </script>
   </body>
 </html>
