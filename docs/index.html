@@ -98,9 +98,10 @@
       au.addEventListener('pause',syncIcon);
       au.addEventListener('playing',syncIcon);
       load();syncIcon();
-      var un=function(){if(au.muted)au.muted=false;if(au.paused)au.play();document.removeEventListener('pointerdown',un);document.removeEventListener('touchstart',un);};
+      var evs=['pointerdown','touchstart','pointermove','wheel','keydown'];
+      var un=function(){if(au.muted){au.muted=false;if(au.paused)au.play();}evs.forEach(function(e){document.removeEventListener(e,un);});};
       var p=au.play();
-      if(p&&p.then){p.catch(function(){au.muted=true;var q=au.play();if(q&&q.then)q.catch(function(){});document.addEventListener('pointerdown',un);document.addEventListener('touchstart',un);});}
+      if(p&&p.then){p.catch(function(){au.muted=true;var q=au.play();if(q&&q.then)q.catch(function(){});evs.forEach(function(e){document.addEventListener(e,un,{passive:true});});});}
     }
     </script>
   </body>
